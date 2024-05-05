@@ -4,24 +4,27 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductList extends Component
 {
-    public $products;
-    public function mount()
-    {
-        $this->products = Product::all();
-    }
+    public $search = '';
 
+    use WithPagination;
     public function render()
     {
-        return view('livewire.product-list')
-            ->layout('layouts.app');
+        $products = Product::where('nama', 'like', "%{$this->search}%")
+                    ->orWhere('jenis', 'like', "%{$this->search}%")
+                    ->paginate(10);
+        return view('livewire.product-list', [
+            'products' => $products
+        ])
+         ->layout('layouts.app');
     }
 
     public function destroy($id)
     {
-        if($id){
+        if ($id) {
             Product::findOrFail($id)->delete();
             return redirect('/product');
         }
