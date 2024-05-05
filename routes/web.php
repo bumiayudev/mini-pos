@@ -3,6 +3,9 @@
 use App\Livewire\ProductList;
 use App\Livewire\Products\CreateProduct;
 use App\Livewire\Products\EditProduct;
+use App\Livewire\Trans\CreateTrans;
+use App\Livewire\Trans\EditTrans;
+use App\Livewire\TransList;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -30,4 +33,18 @@ Route::get('/product/edit/{id}', EditProduct::class)
     ->name('product.edit')
 ; 
 
+Route::get('/trans', TransList::class)
+   ->middleware(['auth'])
+    ->name('trans')
+; 
+
+Route::get('/trans/create', CreateTrans::class)
+   ->middleware(['auth'])
+    ->name('trans.create')
+; 
+
+Route::get('/trans/edit/{id}', EditTrans::class)
+   ->middleware(['auth'])
+    ->name('trans.edit')
+; 
 require __DIR__.'/auth.php';

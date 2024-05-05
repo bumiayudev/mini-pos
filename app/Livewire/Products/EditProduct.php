@@ -14,7 +14,7 @@ class EditProduct extends Component
     public $nama = '';
     #[Validate('required')] 
     public $jenis = '';
-    #[Validate('required')] 
+    #[Validate('required|numeric')] 
     public $stok = '';
 
     public function mount($id)
