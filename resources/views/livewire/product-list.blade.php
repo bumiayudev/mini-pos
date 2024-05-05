@@ -37,7 +37,7 @@
                                 <td class="border border-slate-300 text-center">{{ $product->nama }}</td>
                                 <td class="border border-slate-300 text-center">{{ $product->jenis }}</td>
                                 <td class="border border-slate-300 text-center">{{ $product->stok }}</td>
-                                <td class="border border-slate-300 text-center"><a href="{{ route('product.edit', $product->id) }}" class="decoration-blue-500">Edit</a> | <button type="button" wire:click="destroy({{ $product->id }})" wire:confirm="Are you sure you want to delete this post?">
+                                <td class="border border-slate-300 text-center"><a href="{{ route('product.edit', $product->id) }}" class="text-blue-500">Edit</a> | <button type="button" wire:click="destroy({{ $product->id }})" wire:confirm="Are you sure you want to delete this post?" class="text-red-600">
                                         Hapus
                                     </button></td>
                             </tr>
