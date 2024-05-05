@@ -1,16 +1,24 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Produk') }}
+            {{ __('Daftar Penjualan') }}
         </h2>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a href="{{ route('trans.create') }}" class="text-indigo-400"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-</svg>Tambah</a>
+                    <div class="flex flex-wrap space-x-80 p-10">
+                        <div>
+                            <a href="{{ route('trans.create') }}" class="text-indigo-400"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>Tambah</a>
+                        </div>
+                        <div>
+                        <input wire:model.live="search" class="inline h-6 rounded" type="text" placeholder="Search product..." />
+                        </div>
+                    </div>
+                    @if($transactions->count())
                     <table class="table-auto border-collapse border border-slate-400 w-full">
                         <thead class="bg-grey-400 text-black">
                             <tr>
@@ -24,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($transactions)
+                            
                             @foreach ($transactions as $trans)
                             <tr>
                                 <td class="border border-slate-300 text-center">{{ $loop->iteration }}</td>
@@ -42,13 +50,13 @@
             </button></td>
                             </tr>
                             @endforeach
-                            @else
-                            <tr>
-                                <td colspan="4">Data masih kosong...</td>
-                            </tr>
-                            @endif
+                            
                         </tbody>
                     </table>
+                   {{ $transactions->links() }}
+                    @else
+                    <p>Tidak ada data yang ditemukan...</p>
+                    @endif
                 </div>
             </div>
         </div>
